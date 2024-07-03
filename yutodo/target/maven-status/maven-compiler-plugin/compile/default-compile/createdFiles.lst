@@ -1,0 +1,5 @@
+com\yutodo\yutodo\model\TodoItem.class
+com\yutodo\yutodo\YutodoApplication.class
+com\yutodo\yutodo\controller\TodoController.class
+com\yutodo\yutodo\repository\TodoRepo.class
+com\yutodo\yutodo\services\TodoService.class

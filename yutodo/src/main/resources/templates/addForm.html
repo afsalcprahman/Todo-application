@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .form-container button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 3px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>Task Form</h2>
+    <form action="/addForm" th:object="${todo}" path="title" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="task">Task:</label>
+        <input type="text" id="task" name="task" required>
+
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority" required>
+            <option value="">Select Priority</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+
+        <label for="duedate">Due Date (YYYY-MM-DD):</label>
+        <input type="text" id="duedate" th:field="*{dueDate}" name="duedate" required pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD">
+
+
+        <label for="status">Status:</label>
+        <select id="status" th:field="*{isComplete}" name="status" required>
+            <option value="true"> Started</option>
+            <option value="false">In progress</option>
+        </select>
+
+        <button type="submit">
+<!--            <a href="/viewAllTasks">-->
+                submit</a>
+            </button>
+    </form>
+</div>
+</body>
+</html>

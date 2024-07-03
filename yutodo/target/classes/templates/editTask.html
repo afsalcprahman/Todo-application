@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edit Task</title>
+  <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5;
+        color: #333;
+        padding: 20px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .form-container {
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 30px;
+        border-radius: 8px;
+        background-color: #ffffff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        color: #4a4a4a;
+        margin-bottom: 30px;
+        font-size: 2em;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+        font-weight: bold;
+    }
+    input[type="text"],
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    select:focus {
+        border-color: #4ecdc4;
+        outline: none;
+        box-shadow: 0 0 5px rgba(78, 205, 196, 0.5);
+    }
+    select {
+        appearance: none;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 20px;
+    }
+    button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #4ecdc4;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    button:hover {
+        background-color: #45b7aa;
+        transform: translateY(-2px);
+    }
+  </style>
+
+</head>
+<body>
+<div class="form-container">
+  <h2>Edit Task</h2>
+  <form th:action="@{/editSaveTodoItem}" th:object="${todo}" method="post">
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" >
+
+    <label for="task">Task:</label>
+    <input type="text" id="task" th:field="*{task}" required>
+
+    <label for="priority">Priority:</label>
+    <select id="priority" name="priority" th:value="${todo.priority}">
+      <option th:each="i : ${#numbers.sequence(1,10)}" th:value="${i}" th:text="${i}"></option>
+    </select>
+
+    <label for="dueDate">dueDate</label>
+    <input type="text" id="dueDate" >
+<!--           th:field="*{dueDate}" required>-->
+
+    <label for="isComplete">Status:</label>
+    <select id="isComplete" name="isComplete" th:value="${todo.isComplete}">
+      <option value="true">Started</option>
+      <option value="false">In progress</option>
+    </select>
+
+    <button type="submit">Save</button>
+  </form>
+</div>
+</body>
+</html>
